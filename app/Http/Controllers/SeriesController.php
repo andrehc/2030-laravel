@@ -27,4 +27,19 @@ class SeriesController extends Controller
 
         return to_route('series.index');
     }
+
+    public function destroy(Request $request)
+    {
+
+        Serie::where('id', $request->series)->delete();
+
+        return to_route('series.index');
+    }
+
+    public function seriesApagadas()
+    {
+        $series = collect(Serie::where('deleted_at', '!=', null)->toSql());
+
+        return view('series.deletados')->with('series', $series);
+    }
 }
