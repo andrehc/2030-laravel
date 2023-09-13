@@ -11,8 +11,10 @@ class SeriesController extends Controller
     public function index()
     {
         $series = Serie::orderBy('nome')->paginate('10');
+        $mensagemSucesso = session('mensagem.sucesso');
 
-        return view('series.index')->with('series', $series);
+        return view('series.index')->with('series', $series)
+            ->with('mensagemSucesso', $mensagemSucesso);
     }
 
     public function create()
@@ -25,13 +27,29 @@ class SeriesController extends Controller
         $serie = Serie::create($request->all());
         $serie->save();
 
+        $request->session()->flash('mensagem.sucesso', "Serie, '$serie->nome' foi adicionada.");
+
         return to_route('series.index');
     }
 
-    public function destroy(Request $request)
+    public function destroy(Serie $series, Request $request)
     {
 
-        Serie::where('id', $request->series)->delete();
+        $series->delete();
+
+        $request->session()->flash('mensagem.sucesso', "Serie, '$series->nome' foi removida.");
+
+        return to_route('series.index');
+    }
+
+    public function show(Serie $series)
+    {
+        return view('series.update')->with('series', $series);
+    }
+    public function update(Serie $series, Request $request)
+    {
+        $series->nome = $request->input('nome');
+        $series->update();
 
         return to_route('series.index');
     }
