@@ -18,14 +18,15 @@ Route::get('/', function () {
     return redirect('/series');
 });
 
-Route::resource('/series', SeriesController::class)->only([
-    'index',
-    'create',
-    'store',
-    'destroy',
-    'update',
-    'show'
-]);
+Route::resource('/series', SeriesController::class);
+// ([
+//     'index',
+//     'create',
+//     'store',
+//     'destroy',
+//     'update',
+//     'edit'
+// ]);
 
 Route::get('/series/apagadas', [SeriesController::class, 'seriesApagadas'])->name('series.seriesApagadas');
 
