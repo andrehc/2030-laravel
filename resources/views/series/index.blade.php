@@ -1,4 +1,4 @@
-<x-layout title="Séries">
+<x-layout title="{{ __('messages.app_name') }}">
     <a href="{{ route('series.create') }}" class="btn btn-dark mb-2">Adicionar</a>
     <a href="{{ route('series.seriesApagadas') }}" class="btn btn-danger mb-2">Series Removidas</a>
 
@@ -6,11 +6,6 @@
         <div class="alert alert-success" id="alert">
             {{ $mensagemSucesso }}
         </div>
-        <script>
-            setTimeout(() => {
-                document.getElementById("alert").style.display = "none";
-            }, 3000);
-        </script>
     @endisset
 
     <ul class="list-group">
