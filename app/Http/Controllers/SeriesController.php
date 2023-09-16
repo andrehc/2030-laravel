@@ -42,7 +42,7 @@ class SeriesController extends Controller
         return to_route('series.index');
     }
 
-    public function show(Serie $series)
+    public function edit(Serie $series)
     {
         return view('series.update')->with('series', $series);
     }
