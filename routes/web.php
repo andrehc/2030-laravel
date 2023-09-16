@@ -19,14 +19,6 @@ Route::get('/', function () {
 });
 
 Route::resource('/series', SeriesController::class);
-// ([
-//     'index',
-//     'create',
-//     'store',
-//     'destroy',
-//     'update',
-//     'edit'
-// ]);
 
 Route::get('/series/apagadas', [SeriesController::class, 'seriesApagadas'])->name('series.seriesApagadas');
 
